@@ -1,0 +1,21 @@
+{
+  "repo": {
+    "name": "testRepo1",
+    "visibility": "private",
+    "access": {
+      "last_modified_date": "8/30/22",
+      "users": [
+        {
+          "email": "foo@example.com",
+          "visual_name": "Foo Man",
+          "access_level": "Admin"
+        },
+        {
+        "email": "bar@example.com",
+        "visual_name": "Bar Man",
+        "access_level": "Reader"
+        }
+      ]
+    }
+  }
+}
