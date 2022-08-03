@@ -57,7 +57,7 @@ def cli(config, verbose, access_token):
 @click.argument("repo-name")
 @click.argument('out', type=click.File('w'), default='-', required=False)
 @pass_config
-def fetch(config, repo_name, out):
+def fetch(config: Config, repo_name: str, out):
     """
     This fetches repo access information on given repos.
     Args:

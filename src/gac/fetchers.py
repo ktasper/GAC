@@ -4,7 +4,7 @@ from the GitHub API
 """
 import click
 
-def fetch_repo_access(config, repo_name): # pylint: disable=inconsistent-return-statements
+def fetch_repo_access(config, repo_name: str): # pylint: disable=inconsistent-return-statements
     """
     Gets access information from a given repo
     """
