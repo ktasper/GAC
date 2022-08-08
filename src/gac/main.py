@@ -4,6 +4,8 @@ are defined.
 """
 import logging
 import click
+
+from gac import auth
 from . import fetchers
 
 LOGGING_LEVELS = {
@@ -67,7 +69,10 @@ def fetch(config: Config, repo_name: str, out):
     out - This defaults to STDOUT, if given a file will write the output to
     the given file instead
     """
-    if config.verbose == 4:
+    if config.verbose == 3:
         click.echo(f"DEBUG: repo-name -> {repo_name}")
-    access_manifest = fetchers.fetch_repo_access(config=config, repo_name=repo_name)
-    click.echo(access_manifest, file=out)
+    session = auth.github_auth(config=config,auth_token=config.access_token)
+    fetchers.fetch_repo_users(config=config, github_session=session, repo_name=repo_name)
+    #or y in dictonary:
+    #   print (type(dictonary[y]))
+    click.echo ("Test", file=out)
