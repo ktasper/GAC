@@ -5,7 +5,7 @@ are defined.
 import logging
 import click
 
-from gac import auth
+from gac import auth, data
 from . import fetchers
 
 LOGGING_LEVELS = {
@@ -70,9 +70,10 @@ def fetch(config: Config, repo_name: str, out):
     the given file instead
     """
     if config.verbose == 3:
-        click.echo(f"DEBUG: repo-name -> {repo_name}")
+        click.echo(f"INFO: repo-name -> {repo_name}")
     session = auth.github_auth(config=config,auth_token=config.access_token)
-    fetchers.fetch_repo_users(config=config, github_session=session, repo_name=repo_name)
-    #or y in dictonary:
-    #   print (type(dictonary[y]))
-    click.echo ("Test", file=out)
+    user_access_dict = fetchers.fetch_repo_users(config=config,
+        github_session=session, repo_name=repo_name)
+
+    data.user_dict_to_json(users_dict=user_access_dict)
+    click.echo (" ", file=out)

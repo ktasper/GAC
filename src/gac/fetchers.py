@@ -15,10 +15,14 @@ def fetch_repo_users(config, github_session, repo_name: str):
     """
     try:
         if config.verbose == 3:
-            click.echo (f"Attempting to fetch: {repo_name}")
+            click.echo (f"INFO: Attempting to fetch -> {repo_name}")
         repo = github_session.get_repo(repo_name)
     except github.UnknownObjectException:
-        click.echo(f"Repo: {repo_name}, not found. Exiting..")
+        click.echo(f"""
+Repo: {repo_name},
+not found. Please check the repo exists and you
+have the correct permissions set on the Access Token,
+Exiting..""")
         sys.exit(1)
     # Get all the users with access to the repo
     user_dict = {}
@@ -35,5 +39,9 @@ def fetch_repo_access(config, repo_name: str): # pylint: disable=inconsistent-re
     Gets access information from a given repo
     """
     if config.verbose == 3:
-        click.echo("DEBUG: In fetch_repo_access func")
+        click.echo("INFO: In fetch_repo_access func")
         return f"Hello World, Reponame = {repo_name}"
+
+def fetch_user_access(user: github.NamedUser):
+    """Gets the users access, user type is NamedUser"""
+    return user.permissions
