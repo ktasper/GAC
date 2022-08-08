@@ -1,3 +1,4 @@
 .vscode/
 test.py
 src/gac/__pycache__/*
+.env
